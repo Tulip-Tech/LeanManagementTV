@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3.3.0
       with:
-        ref: openvpn
+        ref: main
     - name: Install OpenVPN
       run: |
           sudo apt update
