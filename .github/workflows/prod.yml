@@ -28,8 +28,12 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
+          if [ -d "LeanManagementTV" ];then
+          echo "Directory exist"
+          else
           git clone https://petercipriano-wtv:${{ secrets.GH_TOKEN }}@github.com/Tulip-Tech/LeanManagementTV.git
-          #./amar-fe.sh
+          fi
+          ./lean.sh
     - name: google-chat-notification
   # You may pin to the exact commit or the version.
   # uses: Co-qn/google-chat-notification@b9227d9daa4638c9782a5bd16c4abb86268127a1
