@@ -30,9 +30,7 @@
   "freePeriods": 0,
   "freeDays": 14,
   "expiresAt": null,
-  "accessToTags": [
-    "(all)"
-  ],
+  "accessToTags": ["(all)"],
   "videoId": null,
   "contentExternalId": null,
   "contentExternalData": null,
@@ -43,4 +41,3 @@
   "startTime": null,
   "endTime": null
 }
-

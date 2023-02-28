@@ -1,6 +1,6 @@
-@use "theme";
-@use "variables";
-@use "./mixins/responsive";
+@use 'theme';
+@use 'variables';
+@use './mixins/responsive';
 
 :root {
   --primary-color: #{theme.$primary-color};

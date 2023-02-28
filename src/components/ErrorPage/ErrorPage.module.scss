@@ -8,7 +8,10 @@
   align-items: center;
   min-height: 70vh;
 
-  a, a:visited, a:hover, a:active {
+  a,
+  a:visited,
+  a:hover,
+  a:active {
     color: inherit;
     font-weight: var(--body-font-weight-bold);
     text-decoration: underline;
@@ -50,7 +53,6 @@
 
 .links {
   position: relative;
-
 }
 
 .stack {

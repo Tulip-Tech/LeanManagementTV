@@ -36,7 +36,7 @@ We use several workers to launch tests for each platform. That increases the spe
 
 Basic commands:
 
-`yarn codecept:mobile` -  to run tests for a mobile device
+`yarn codecept:mobile` - to run tests for a mobile device
 `yarn codecept:desktop`: - to run tests for desktop
 `yarn serve-report:mobile` - to serve allure report from "./output/mobile" folder
 `yarn serve-report:desktop` - to serve allure report from "./output/desktop" folder
@@ -45,7 +45,7 @@ Basic commands:
 
 ## GitHub Actions
 
-We have two actions: one for desktop and one for mobile device. Each one runs independently. After the action run it is possible to download an artifact with an allure report and build a nice report locally. 
+We have two actions: one for desktop and one for mobile device. Each one runs independently. After the action run it is possible to download an artifact with an allure report and build a nice report locally.
 
 To do it on Mac: `allure serve ~/Downloads/allure-report-desktop`
 
@@ -56,4 +56,4 @@ To serve allure reports locally `allure-commandline` package should be installed
 1. Install Java 8 (for Mac homebrew `adoptopenjdk8` package can be used)
 2. `yarn install`
 3. Install `allure-commandline` globally (can help in the future to serve downloaded artifacts)
-4. Run `yarn codecept-serve:desktop` 
+4. Run `yarn codecept-serve:desktop`
