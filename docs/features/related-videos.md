@@ -4,7 +4,7 @@
 
 Related videos are a shelf in the [video detail screen](video-detail.md) showing content with similar metadata.
 
-Related videos are powered through [recommendation playlist](https://support.jwplayer.com/topics/recommendations) is used. 
+Related videos are powered through [recommendation playlist](https://support.jwplayer.com/topics/recommendations) is used.
 
 ## Retrieve related videos
 
@@ -41,4 +41,4 @@ GET playlists/fuD6TWcf?related_media_id=dwEE1oBP
 
 ## Configuration
 
-The feature can be enabled in the [app config](/docs/configuration.md) by setting `recommendationsPlaylist`  to the ID of the recommendations playlist you want to use.
+The feature can be enabled in the [app config](/docs/configuration.md) by setting `recommendationsPlaylist` to the ID of the recommendations playlist you want to use.

@@ -1,11 +1,6 @@
 {
-  "include": [
-    ".",
-    "../types",
-  ],
-  "exclude": [
-    "../node_modules"
-  ],
+  "include": [".", "../types"],
+  "exclude": ["../node_modules"],
   "ts-node": {
     "files": true
   },
@@ -20,12 +15,8 @@
     "resolveJsonModule": true,
     "baseUrl": "../test-e2e",
     "paths": {
-      "#test/*": [
-        "../test/*"
-      ],
-      "#utils/*": [
-        "./utils/*"
-      ],
+      "#test/*": ["../test/*"],
+      "#utils/*": ["./utils/*"]
     }
-  },
+  }
 }

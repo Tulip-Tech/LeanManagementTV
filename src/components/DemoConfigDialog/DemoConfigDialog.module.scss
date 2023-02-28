@@ -28,7 +28,10 @@
     line-height: 18px;
   }
 
-  a, a:visited, a:hover, a:active {
+  a,
+  a:visited,
+  a:hover,
+  a:active {
     color: inherit;
     font-weight: var(--body-font-weight-bold);
     text-decoration: underline;

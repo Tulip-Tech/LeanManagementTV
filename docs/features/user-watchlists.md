@@ -2,7 +2,7 @@
 
 <img title="" src="./../_images/watchlist.jpg" alt="continue-watchting" width="542">
 
-###### 
+######
 
 ## Favorites watchlist
 
@@ -38,7 +38,7 @@ For non-logged in users, the watch history is stored clientside in local storage
 
 For logged in users, the favorites and watch history are stored server side at the subscription or authentication provider to enable **cross-device watch history**
 
-To ensure a **cross-device experience**, we standardize on the following dataformat: 
+To ensure a **cross-device experience**, we standardize on the following dataformat:
 
 ### Watch history format
 
@@ -62,8 +62,8 @@ To ensure a **cross-device experience**, we standardize on the following datafor
 ```
 
 ## Watchlist playlist
-The media metadata for the stored media ids an be retrieved through a [watchlist playlist](https://developer.jwplayer.com/jwplayer/docs/creating-and-using-a-watchlist-playlist):
 
+The media metadata for the stored media ids an be retrieved through a [watchlist playlist](https://developer.jwplayer.com/jwplayer/docs/creating-and-using-a-watchlist-playlist):
 
 ```
 curl 'https://cdn.jwplayer.com/apps/watchlists/<watchlist-id>?media_ids=<media-ids-comma-seperated>'
@@ -75,16 +75,16 @@ Note that a watchlist need to be created first:
 curl 'https://api.jwplayer.com/v2/sites/<property-id>/playlists/watchlist_playlist' \
  -H 'authorization: <property-api-key>' \
  -H 'content-type: application/json' \
- --data-raw '{"metadata": {}}' 
+ --data-raw '{"metadata": {}}'
 ```
 
 ## Configuration
 
-The continue watching and favorites features can be enabled and disabled in the [app config](/docs/configuration.md). 
+The continue watching and favorites features can be enabled and disabled in the [app config](/docs/configuration.md).
 
 ## Cleeng
 
-https://cleeng.com is a subscription management system, which pre-integrated in the web-app. 
+https://cleeng.com is a subscription management system, which pre-integrated in the web-app.
 
 For Cleeng we store the watch history in the `customer externalData` attribute. See [here](https://developers.cleeng.com/reference/fetch-customers-data)
 

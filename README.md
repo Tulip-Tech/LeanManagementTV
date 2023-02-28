@@ -3,6 +3,7 @@
 The JW OTT Webapp is an open-source, dynamically generated video website built around JW Player and JW Platform services. It enables you to easily publish your JW Player-hosted video content with no coding and minimal configuration.
 
 **Examples of JW OTT Webapp in action:**
+
 - [Free Content + Live + EPG](https://app-preview.jwplayer.com/?app-config=225tvq1i)
 - [Ad-based Monetization](https://app-preview.jwplayer.com/?app-config=egpovogv)
 - [Subscription-based Monetization](https://app-preview.jwplayer.com/?app-config=kziwdpjr)
@@ -69,4 +70,4 @@ To report bugs and feature requests, or request help using JW OTT Webapp, use th
 
 ## Software License
 
-This project is licensed under under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).  See [LICENSE.txt](LICENSE.txt) for more details.
+This project is licensed under under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0). See [LICENSE.txt](LICENSE.txt) for more details.

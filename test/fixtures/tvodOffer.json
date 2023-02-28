@@ -30,9 +30,7 @@
   "freePeriods": null,
   "freeDays": null,
   "expiresAt": null,
-  "accessToTags": [
-      "test_0HDG0ktJ"
-  ],
+  "accessToTags": ["test_0HDG0ktJ"],
   "videoId": null,
   "contentExternalId": 0,
   "contentExternalData": null,
