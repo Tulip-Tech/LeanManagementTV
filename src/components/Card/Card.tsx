@@ -8,6 +8,7 @@ import { formatDurationTag, formatSeriesMetaString } from '#src/utils/formatting
 import Lock from '#src/icons/Lock';
 import Image from '#components/Image/Image';
 import type { ImageData } from '#types/playlist';
+import { useConfigStore } from '#src/stores/ConfigStore';
 
 export const cardAspectRatios = ['2:1', '16:9', '5:3', '4:3', '1:1', '9:13', '2:3', '9:16'] as const;
 
@@ -76,46 +77,87 @@ function Card({
       return <div className={classNames(styles.tag, styles.live)}>{t('live')}</div>;
     }
   };
-
-  return (
-    <div
-      className={cardClassName}
-      onClick={onClick}
-      onMouseEnter={onHover}
-      tabIndex={disabled ? -1 : 0}
-      onKeyDown={(event: KeyboardEvent) => (event.key === 'Enter' || event.key === ' ') && !disabled && onClick && onClick()}
-      role="button"
-      aria-label={t('play_item', { title })}
-    >
-      <div className={posterClassNames}>
-        <Image className={posterImageClassNames} image={image} width={featured ? 640 : 320} onLoad={() => setImageLoaded(true)} alt={title} />
-        {isCurrent && <div className={styles.currentLabel}>{currentLabel}</div>}
-        {!loading && (
-          <div className={styles.meta}>
-            {featured && !disabled && <div className={classNames(styles.title, { [styles.loading]: loading })}>{title}</div>}
-            <div className={styles.tags}>
-              {isLocked && (
-                <div className={classNames(styles.tag, styles.lock)} aria-label={t('card_lock')} role="status">
-                  <Lock />
-                </div>
-              )}
-              {renderTag()}
+  const { config } = useConfigStore(({ config }) => ({ config }));
+  // console.log(config);
+  if (config.siteName == 'Test Website') {
+    return (
+      <div
+        className={cardClassName}
+        onClick={onClick}
+        onMouseEnter={onHover}
+        tabIndex={disabled ? -1 : 0}
+        onKeyDown={(event: KeyboardEvent) => (event.key === 'Enter' || event.key === ' ') && !disabled && onClick && onClick()}
+        role="button"
+        aria-label={t('play_item', { title })}
+      >
+        <div className={posterClassNames}>
+          <Image className={posterImageClassNames} image={image} width={featured ? 640 : 320} onLoad={() => setImageLoaded(true)} alt={title} />
+          {isCurrent && <div className={styles.currentLabel}>{currentLabel}</div>}
+          {!loading && (
+            <div className={styles.meta}>
+              {featured && !disabled && <div className={classNames(styles.title, { [styles.loading]: loading })}>{title}</div>}
+              <div className={styles.tags}>
+                {isLocked && (
+                  <div className={classNames(styles.tag, styles.lock)} aria-label={t('card_lock')} role="status">
+                    <Lock />
+                  </div>
+                )}
+                {renderTag()}
+              </div>
             </div>
+          )}
+          {progress ? (
+            <div className={styles.progressContainer}>
+              <div className={styles.progressBar} style={{ width: `${Math.round(progress * 100)}%` }} />
+            </div>
+          ) : null}
+        </div>
+        {!featured && !disabled && (
+          <div className={styles.titleContainer}>
+            <div className={classNames(styles.title, { [styles.loading]: loading })}>{title}</div>
           </div>
         )}
-        {progress ? (
-          <div className={styles.progressContainer}>
-            <div className={styles.progressBar} style={{ width: `${Math.round(progress * 100)}%` }} />
-          </div>
-        ) : null}
       </div>
-      {!featured && !disabled && (
-        <div className={styles.titleContainer}>
-          <div className={classNames(styles.title, { [styles.loading]: loading })}>{title}</div>
+    );
+  } else {
+    return (
+      <div
+        className={cardClassName}
+        onClick={onClick}
+        onMouseEnter={onHover}
+        tabIndex={disabled ? -1 : 0}
+        onKeyDown={(event: KeyboardEvent) => (event.key === 'Enter' || event.key === ' ') && !disabled && onClick && onClick()}
+        role="button"
+        aria-label={t('play_item', { title })}
+      >
+        <div className={posterClassNames}>
+          <Image className={posterImageClassNames} image={image} width={featured ? 640 : 320} onLoad={() => setImageLoaded(true)} alt={title} />
+          {isCurrent && <div className={styles.currentLabel}>{currentLabel}</div>}
+          {!loading && (
+            <div className={styles.meta}>
+              {featured && !disabled && <div className={classNames(styles.title, { [styles.loading]: loading })}>{title}</div>}
+              <div className={styles.tags}>
+                {isLocked && (
+                  <div className={classNames(styles.tag, styles.lock)} aria-label={t('card_lock')} role="status">
+                    <Lock />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          {progress ? (
+            <div className={styles.progressContainer}>
+              <div className={styles.progressBar} style={{ width: `${Math.round(progress * 100)}%` }} />
+            </div>
+          ) : null}
         </div>
-      )}
-    </div>
-  );
+        {!featured && !disabled && (
+          <div className={styles.titleContainer}>
+            <div className={classNames(styles.title, { [styles.loading]: loading })}>{title}</div>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
-
 export default memo(Card);

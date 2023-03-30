@@ -12,6 +12,7 @@ import { isLocked } from '#src/utils/entitlements';
 import TileDock from '#components/TileDock/TileDock';
 import Card, { type PosterAspectRatio } from '#components/Card/Card';
 import type { Playlist, PlaylistItem } from '#types/playlist';
+import { useConfigStore } from '#src/stores/ConfigStore';
 
 export const tileBreakpoints: Breakpoints = {
   [Breakpoint.xs]: 1,
@@ -67,8 +68,8 @@ const Shelf = ({
   const breakpoint: Breakpoint = useBreakpoint();
   const { t } = useTranslation('common');
   const [didSlideBefore, setDidSlideBefore] = useState(false);
-  const tilesToShow: number = (featured ? featuredTileBreakpoints[breakpoint] : tileBreakpoints[breakpoint]) + visibleTilesDelta;
-
+  const tilesToShow: number = (featured ? 1 : tileBreakpoints[breakpoint]) + visibleTilesDelta;
+  const { config } = useConfigStore(({ config }) => ({ config }));
   const renderTile = useCallback(
     (item: PlaylistItem, isInView: boolean) => (
       <Card
@@ -136,7 +137,48 @@ const Shelf = ({
   };
 
   if (error || !playlist?.playlist) return <h2 className={styles.error}>Could not load items</h2>;
-
+  if (config.siteName == 'Test Website') {
+    return (
+      <div className={classNames(styles.shelf, { [styles.featured]: featured })}>
+        {!featured ? <h2 className={classNames(styles.title, { [styles.loading]: loading })}>{title || playlist.title}</h2> : null}
+        <TileDock<PlaylistItem>
+          items={playlist.playlist}
+          tilesToShow={tilesToShow}
+          wrapWithEmptyTiles={featured && playlist.playlist.length === 1}
+          cycleMode={'restart'}
+          showControls={!matchMedia('(hover: none)').matches && !loading}
+          showDots={featured}
+          transitionTime={'0.3s'}
+          spacing={30}
+          renderLeftControl={renderLeftControl}
+          renderRightControl={renderRightControl}
+          renderPaginationDots={renderPaginationDots}
+          renderTile={renderTile}
+        />
+      </div>
+    );
+  }
+  if (config.siteName == 'Lean Management') {
+    return (
+      <div className={classNames(styles.shelf, { [styles.featured]: featured })}>
+        {!featured ? <h2 className={classNames(styles.title, { [styles.loading]: loading })}>{title || playlist.title}</h2> : null}
+        <TileDock<PlaylistItem>
+          items={playlist.playlist}
+          tilesToShow={tilesToShow}
+          wrapWithEmptyTiles={featured && playlist.playlist.length === 1}
+          cycleMode={'restart'}
+          showControls={!matchMedia('(hover: none)').matches && !loading}
+          showDots={featured}
+          transitionTime={'0.3s'}
+          spacing={100}
+          renderLeftControl={renderLeftControl}
+          renderRightControl={renderRightControl}
+          renderPaginationDots={renderPaginationDots}
+          renderTile={renderTile}
+        />
+      </div>
+    );
+  }
   return (
     <div className={classNames(styles.shelf, { [styles.featured]: featured })}>
       {!featured ? <h2 className={classNames(styles.title, { [styles.loading]: loading })}>{title || playlist.title}</h2> : null}

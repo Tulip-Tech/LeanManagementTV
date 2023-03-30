@@ -18,6 +18,7 @@ import Sidebar from '#components/Sidebar/Sidebar';
 import MenuButton from '#components/MenuButton/MenuButton';
 import UserMenu from '#components/UserMenu/UserMenu';
 import { addQueryParam } from '#src/utils/location';
+import { getConfigNavigateCallback } from '#src/utils/configOverride';
 
 const Layout = () => {
   const location = useLocation();
@@ -78,7 +79,11 @@ const Layout = () => {
     useUIStore.setState({
       userMenuOpen: value,
     });
+  // const configId = 'pcezbnmi';
 
+  const count = localStorage.getItem('count');
+
+  const configNavigate = getConfigNavigateCallback(useNavigate());
   const renderUserActions = () => {
     if (!clientId) return null;
 
@@ -91,57 +96,269 @@ const Layout = () => {
       </div>
     );
   };
-
-  return (
-    <div className={styles.layout}>
-      <Helmet>
-        <title>{siteName}</title>
-        <meta name="description" content={description} />
-        <meta property="og:description" content={description} />
-        <meta property="og:title" content={siteName} />
-        <meta name="twitter:title" content={siteName} />
-        <meta name="twitter:description" content={description} />
-      </Helmet>
-      <div className={styles.main}>
-        <Header
-          onMenuButtonClick={() => setSideBarOpen(true)}
-          logoSrc={banner}
-          searchEnabled={!!searchPlaylist}
-          searchBarProps={{
-            query: searchQuery,
-            onQueryChange: (event) => updateSearchQuery(event.target.value),
-            onClearButtonClick: () => updateSearchQuery(''),
-            inputRef: searchInputRef,
-          }}
-          searchActive={searchActive}
-          onSearchButtonClick={searchButtonClickHandler}
-          onCloseSearchButtonClick={closeSearchButtonClickHandler}
-          onLoginButtonClick={loginButtonClickHandler}
-          onSignUpButtonClick={signUpButtonClickHandler}
-          isLoggedIn={isLoggedIn}
-          userMenuOpen={userMenuOpen}
-          toggleUserMenu={toggleUserMenu}
-          canLogin={!!clientId}
-          showPaymentsMenuItem={accessModel !== 'AVOD'}
-        >
-          <Button label={t('home')} to="/" variant="text" />
-          {menu.map((item) => (
-            <Button key={item.contentId} label={item.label} to={`/p/${item.contentId}`} variant="text" />
-          ))}
-        </Header>
-        <Sidebar isOpen={sideBarOpen} onClose={() => setSideBarOpen(false)}>
-          <MenuButton label={t('home')} to="/" tabIndex={sideBarOpen ? 0 : -1} />
-          {menu.map((item) => (
-            <MenuButton key={item.contentId} label={item.label} to={`/p/${item.contentId}`} tabIndex={sideBarOpen ? 0 : -1} />
-          ))}
-          <hr className={styles.divider} />
-          {renderUserActions()}
-        </Sidebar>
-        <Outlet />
+  if (count == 'pcezbnmi') {
+    return (
+      <div className={styles.layout}>
+        {/* {console.log('onload', count)} */}
+        <Helmet>
+          <title>{siteName}</title>
+          <meta name="description" content={description} />
+          <meta property="og:description" content={description} />
+          <meta property="og:title" content={siteName} />
+          <meta name="twitter:title" content={siteName} />
+          <meta name="twitter:description" content={description} />
+        </Helmet>
+        <div className={styles.main}>
+          <Header
+            onMenuButtonClick={() => setSideBarOpen(true)}
+            logoSrc={banner}
+            searchEnabled={!!searchPlaylist}
+            searchBarProps={{
+              query: searchQuery,
+              onQueryChange: (event) => updateSearchQuery(event.target.value),
+              onClearButtonClick: () => updateSearchQuery(''),
+              inputRef: searchInputRef,
+            }}
+            searchActive={searchActive}
+            onSearchButtonClick={searchButtonClickHandler}
+            onCloseSearchButtonClick={closeSearchButtonClickHandler}
+            onLoginButtonClick={loginButtonClickHandler}
+            onSignUpButtonClick={signUpButtonClickHandler}
+            isLoggedIn={isLoggedIn}
+            userMenuOpen={userMenuOpen}
+            toggleUserMenu={toggleUserMenu}
+            canLogin={!!clientId}
+            showPaymentsMenuItem={accessModel !== 'AVOD'}
+          >
+            <Button label={t('home')} to="/" variant="text" />
+            {menu.map((item) => (
+              <Button key={item.contentId} label={item.label} to={`/p/${item.contentId}`} variant="text" />
+            ))}
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'pcezbnmi');
+                configNavigate('pcezbnmi');
+                window.location.reload();
+              }}
+            >
+              Tulip-tech(current)
+            </button>
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'jwsoz24q');
+                configNavigate('jwsoz24q');
+                window.location.reload();
+              }}
+            >
+              jwtest
+            </button>
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'djn5yfne');
+                configNavigate('djn5yfne');
+                window.location.reload();
+              }}
+            >
+              Lean-Management
+            </button>
+          </Header>
+          <Sidebar isOpen={sideBarOpen} onClose={() => setSideBarOpen(false)}>
+            <MenuButton label={t('home')} to="/" tabIndex={sideBarOpen ? 0 : -1} />
+            {menu.map((item) => (
+              <MenuButton key={item.contentId} label={item.label} to={`/p/${item.contentId}`} tabIndex={sideBarOpen ? 0 : -1} />
+            ))}
+            <hr className={styles.divider} />
+            {renderUserActions()}
+          </Sidebar>
+          this is tuliptech config
+          <Outlet />
+        </div>
+        {!!footerText && <MarkdownComponent className={styles.footer} markdownString={footerText} inline />}
       </div>
-      {!!footerText && <MarkdownComponent className={styles.footer} markdownString={footerText} inline />}
-    </div>
-  );
+    );
+  }
+  if (count == 'jwsoz24q') {
+    return (
+      <div className={styles.layout}>
+        {/* {console.log('onload', count)} */}
+        <Helmet>
+          <title>{siteName}</title>
+          <meta name="description" content={description} />
+          <meta property="og:description" content={description} />
+          <meta property="og:title" content={siteName} />
+          <meta name="twitter:title" content={siteName} />
+          <meta name="twitter:description" content={description} />
+        </Helmet>
+        <div className={styles.main}>
+          <Header
+            onMenuButtonClick={() => setSideBarOpen(true)}
+            logoSrc={banner}
+            searchEnabled={!!searchPlaylist}
+            searchBarProps={{
+              query: searchQuery,
+              onQueryChange: (event) => updateSearchQuery(event.target.value),
+              onClearButtonClick: () => updateSearchQuery(''),
+              inputRef: searchInputRef,
+            }}
+            searchActive={searchActive}
+            onSearchButtonClick={searchButtonClickHandler}
+            onCloseSearchButtonClick={closeSearchButtonClickHandler}
+            onLoginButtonClick={loginButtonClickHandler}
+            onSignUpButtonClick={signUpButtonClickHandler}
+            isLoggedIn={isLoggedIn}
+            userMenuOpen={userMenuOpen}
+            toggleUserMenu={toggleUserMenu}
+            canLogin={!!clientId}
+            showPaymentsMenuItem={accessModel !== 'AVOD'}
+          >
+            <Button label={t('home')} to="/" variant="text" />
+            {menu.map((item) => (
+              <Button key={item.contentId} label={item.label} to={`/p/${item.contentId}`} variant="text" />
+            ))}
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'pcezbnmi');
+                configNavigate('pcezbnmi');
+                window.location.reload();
+              }}
+            >
+              Tulip-tech
+            </button>
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'jwsoz24q');
+                configNavigate('jwsoz24q');
+                window.location.reload();
+              }}
+            >
+              jwtest(current)
+            </button>
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'djn5yfne');
+                configNavigate('djn5yfne');
+                window.location.reload();
+              }}
+            >
+              Lean-Management
+            </button>
+          </Header>
+          <Sidebar isOpen={sideBarOpen} onClose={() => setSideBarOpen(false)}>
+            <MenuButton label={t('home')} to="/" tabIndex={sideBarOpen ? 0 : -1} />
+            {menu.map((item) => (
+              <MenuButton key={item.contentId} label={item.label} to={`/p/${item.contentId}`} tabIndex={sideBarOpen ? 0 : -1} />
+            ))}
+            <hr className={styles.divider} />
+            {renderUserActions()}
+          </Sidebar>
+          This is test config
+          <Outlet />
+        </div>
+        {!!footerText && <MarkdownComponent className={styles.footer} markdownString={footerText} inline />}
+      </div>
+    );
+  }
+  if (count == 'djn5yfne' || config.siteName == 'Lean Management') {
+    return (
+      <div className={styles.layout}>
+        {/* {console.log('onload', count)} */}
+        <Helmet>
+          <title>{siteName}</title>
+          <meta name="description" content={description} />
+          <meta property="og:description" content={description} />
+          <meta property="og:title" content={siteName} />
+          <meta name="twitter:title" content={siteName} />
+          <meta name="twitter:description" content={description} />
+        </Helmet>
+        <div className={styles.main}>
+          <Header
+            onMenuButtonClick={() => setSideBarOpen(true)}
+            logoSrc={banner}
+            searchEnabled={!!searchPlaylist}
+            searchBarProps={{
+              query: searchQuery,
+              onQueryChange: (event) => updateSearchQuery(event.target.value),
+              onClearButtonClick: () => updateSearchQuery(''),
+              inputRef: searchInputRef,
+            }}
+            searchActive={searchActive}
+            onSearchButtonClick={searchButtonClickHandler}
+            onCloseSearchButtonClick={closeSearchButtonClickHandler}
+            onLoginButtonClick={loginButtonClickHandler}
+            onSignUpButtonClick={signUpButtonClickHandler}
+            isLoggedIn={isLoggedIn}
+            userMenuOpen={userMenuOpen}
+            toggleUserMenu={toggleUserMenu}
+            canLogin={!!clientId}
+            showPaymentsMenuItem={accessModel !== 'AVOD'}
+          >
+            <Button label={t('home')} to="/" variant="text" />
+            {menu.map((item) => (
+              <Button key={item.contentId} label={item.label} to={`/p/${item.contentId}`} variant="text" />
+            ))}
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'pcezbnmi');
+                configNavigate('pcezbnmi');
+                window.location.reload();
+              }}
+            >
+              Tulip-tech
+            </button>
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'jwsoz24q');
+                configNavigate('jwsoz24q');
+                window.location.reload();
+              }}
+            >
+              jwtest
+            </button>
+            <button
+              onClick={() => {
+                // console.log(config);
+                // console.log('state', count);
+                localStorage.setItem('count', 'djn5yfne');
+                configNavigate('djn5yfne');
+                window.location.reload();
+              }}
+            >
+              Lean-Management(current)
+            </button>
+          </Header>
+          <Sidebar isOpen={sideBarOpen} onClose={() => setSideBarOpen(false)}>
+            <MenuButton label={t('home')} to="/" tabIndex={sideBarOpen ? 0 : -1} />
+            {menu.map((item) => (
+              <MenuButton key={item.contentId} label={item.label} to={`/p/${item.contentId}`} tabIndex={sideBarOpen ? 0 : -1} />
+            ))}
+            <hr className={styles.divider} />
+            {renderUserActions()}
+          </Sidebar>
+          This is lean Management config
+          <Outlet />
+        </div>
+        {!!footerText && <MarkdownComponent className={styles.footer} markdownString={footerText} inline />}
+      </div>
+    );
+  } else {
+    return <div>Wrong layout Config</div>;
+  }
 };
 
 export default Layout;

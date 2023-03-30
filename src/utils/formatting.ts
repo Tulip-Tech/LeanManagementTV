@@ -66,6 +66,9 @@ export const slugify = (text: string, whitespaceChar: string = '-') =>
 export const mediaURL = (item: PlaylistItem, playlistId?: string | null, play = false) =>
   addQueryParams(`/m/${item.mediaid}/${slugify(item.title)}`, { r: playlistId, play: play ? '1' : null });
 
+export const feedURL = (item: PlaylistItem, playlistId?: string | null, play = false) =>
+  addQueryParams(`/p/${item.feedid}`, { r: playlistId, play: play ? '1' : null });
+
 export const liveChannelsURL = (playlistId: string, channelId?: string, play = false) => {
   return addQueryParams(`/p/${playlistId}`, {
     channel: channelId,
