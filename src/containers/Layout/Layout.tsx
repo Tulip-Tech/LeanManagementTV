@@ -150,6 +150,7 @@ const Layout = () => {
                 // console.log(config);
                 // console.log('state', count);
                 localStorage.setItem('count', 'jwsoz24q');
+
                 configNavigate('jwsoz24q');
                 window.location.reload();
               }}
